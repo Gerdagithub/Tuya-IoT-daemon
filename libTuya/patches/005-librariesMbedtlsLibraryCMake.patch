@@ -1,0 +1,12 @@
+Index: libTuya-1.0.0/libraries/mbedtls/library/CMakeLists.txt
+===================================================================
+--- libTuya-1.0.0.orig/libraries/mbedtls/library/CMakeLists.txt
++++ libTuya-1.0.0/libraries/mbedtls/library/CMakeLists.txt
+@@ -1,5 +1,5 @@
+-option(USE_STATIC_MBEDTLS_LIBRARY "Build mbed TLS static library." ON)
+-option(USE_SHARED_MBEDTLS_LIBRARY "Build mbed TLS shared library." OFF)
++option(USE_STATIC_MBEDTLS_LIBRARY "Build mbed TLS static library." OFF)
++option(USE_SHARED_MBEDTLS_LIBRARY "Build mbed TLS shared library." ON)
+ option(LINK_WITH_PTHREAD "Explicitly link mbed TLS library to pthread." OFF)
+ 
+ set(src_crypto

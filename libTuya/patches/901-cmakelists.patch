@@ -1,0 +1,12 @@
+Index: libTuya-1.0.0/CMakeLists.txt
+===================================================================
+--- libTuya-1.0.0.orig/CMakeLists.txt
++++ libTuya-1.0.0/CMakeLists.txt
+@@ -72,6 +72,7 @@ add_subdirectory( src )
+ # # Build the demos.
+ add_subdirectory( examples )
+ 
++install(CODE "MESSAGE(\"Created empty install target.\")")
+ 
+ message(STATUS "------------------------------------------------------------" )
+ message(STATUS "[Link SDK] Configuration summary."                            )

@@ -1,0 +1,20 @@
+Index: libTuya-1.0.0/src/CMakeLists.txt
+===================================================================
+--- libTuya-1.0.0.orig/src/CMakeLists.txt
++++ libTuya-1.0.0/src/CMakeLists.txt
+@@ -3,7 +3,7 @@ include( ${LIBRARIES_DIR}/coreJSON/jsonF
+ include( ${LINKSDK_DIRS}/tuyaFilePaths.cmake )
+ 
+ # Add a library with the above sources
+-add_library( link_core STATIC
++add_library( link_core SHARED
+     ${LINK_SDK_SOURCES}
+     ${JSON_SOURCES}
+ )
+@@ -31,4 +31,4 @@ target_link_libraries( link_core
+ # file(COPY ${JSON_SOURCES} DESTINATION ${PROJECT_SOURCE_DIR}/output/tuya_linksdk_c/src)
+ 
+ # file(COPY ${OUTPUT_INCLUDE} DESTINATION ${PROJECT_SOURCE_DIR}/output/tuya_linksdk_c/include)
+-# file(COPY ${OUTPUT_INTERNAL_INC} DESTINATION ${PROJECT_SOURCE_DIR}/output/tuya_linksdk_c/src/internal_inc)
+\ No newline at end of file
++# file(COPY ${OUTPUT_INTERNAL_INC} DESTINATION ${PROJECT_SOURCE_DIR}/output/tuya_linksdk_c/src/internal_inc)

@@ -1,0 +1,13 @@
+Index: libTuya-1.0.0/middleware/CMakeLists.txt
+===================================================================
+--- libTuya-1.0.0.orig/middleware/CMakeLists.txt
++++ libTuya-1.0.0/middleware/CMakeLists.txt
+@@ -2,7 +2,7 @@ include( ${LIBRARIES_DIR}/coreHTTP/httpF
+ include( ${LIBRARIES_DIR}/coreMQTT/mqttFilePaths.cmake )
+ 
+ # Create target for POSIX implementation of reconnect logic.
+-add_library( middleware_implementation STATIC
++add_library( middleware_implementation SHARED
+                 ${MQTT_SOURCES}
+                 ${MQTT_SERIALIZER_SOURCES}
+                 ${HTTP_SOURCES}

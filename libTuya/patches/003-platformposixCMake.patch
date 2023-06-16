@@ -1,0 +1,13 @@
+Index: libTuya-1.0.0/platform/posix/CMakeLists.txt
+===================================================================
+--- libTuya-1.0.0.orig/platform/posix/CMakeLists.txt
++++ libTuya-1.0.0/platform/posix/CMakeLists.txt
+@@ -1,7 +1,7 @@
+ include( ${LIBRARIES_DIR}/mbedtlsFilePaths.cmake )
+ 
+ # Create target for POSIX implementation of reconnect logic.
+-add_library( platform_port STATIC
++add_library( platform_port SHARED
+                "mbedtls_sockets_wrapper.c"
+                "network_wrapper.c"
+                "system_wrapper.c"
