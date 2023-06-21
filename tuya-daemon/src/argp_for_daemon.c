@@ -7,15 +7,15 @@ error_t parse_opt(int key, char *arg, struct argp_state *state)
   switch (key)
   {
     case 'p':
-      arguments->productId = arg;
+      strncpy(arguments->productId, arg, strlen(arg) + 1); 
       break;
         
     case 'd':
-      arguments->deviceId = arg;
+      strncpy(arguments->deviceId, arg, strlen(arg) + 1); 
       break;
         
     case 's':
-      arguments->deviceSecret = arg;
+      strncpy(arguments->deviceSecret, arg, strlen(arg) + 1); 
       break;
     
     case 'D':

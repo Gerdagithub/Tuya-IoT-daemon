@@ -24,9 +24,9 @@ static struct argp_option options[] = {
 /* Used by main to communicate with parse_opt. */
 struct Arguments
 {
-  char *productId;
-  char *deviceId;
-  char *deviceSecret;
+  char productId[50];
+  char deviceId[50];
+  char deviceSecret[50];
   bool becomeDaemon;
 };
 

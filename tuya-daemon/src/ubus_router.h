@@ -1,9 +1,10 @@
-#ifndef UBUS_ROUTER_INFO_H
-#define UBUS_ROUTER_INFO_H
+#ifndef UBUS_ROUTER_H
+#define UBUS_ROUTER_H
 
 #include <libubox/blobmsg_json.h>
 #include <libubus.h>
 #include <syslog.h>
+#include <stdbool.h>
 
 struct MemData {
 	int total;
@@ -30,6 +31,7 @@ static const struct blobmsg_policy info_policy[__INFO_MAX] = {
 	[MEMORY_DATA] = { .name = "memory", .type = BLOBMSG_TYPE_TABLE },
 };
 
-void board_cb(struct ubus_request *req, int type, struct blob_attr *msg, int *ret);
+void memory_cb(struct ubus_request *req, int type, struct blob_attr *msg, int *ret);
+void connect_to_ubus(struct ubus_context **ctx, int *ret);
 
 #endif

@@ -2,12 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ubus_router_info.h>
+#include <ubus_router.h>
 #include <tuya.h>
 #include <argp_for_daemon.h>
 #include <stdbool.h>
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     tuya_mqtt_context_t client_instance;
     tuya_mqtt_context_t* client = &client_instance;        
@@ -17,9 +17,9 @@ int main(int argc, char** argv)
     struct MemData memory = { 0 };
     struct Arguments arguments; 
 
-    arguments.productId = NULL;
-    arguments.deviceId = NULL;
-    arguments.deviceSecret = NULL;
+    strcpy(arguments.productId, "");
+    strcpy(arguments.deviceId, "");
+    strcpy(arguments.deviceSecret, "");
     arguments.becomeDaemon = false;
 
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
@@ -32,6 +32,7 @@ int main(int argc, char** argv)
 
     if(ret){
         syslog(LOG_USER | LOG_ERR, "An error occurred while trying to make the program a daemon process");
+        closelog();
         return EXIT_FAILURE;
     }
     syslog(LOG_USER | LOG_INFO, "The program started");
@@ -39,18 +40,15 @@ int main(int argc, char** argv)
     struct ubus_context *ctx;
 	uint32_t id;
 
-    ctx = ubus_connect(NULL);
-	if (!ctx) {
-		syslog(LOG_USER | LOG_ERR, "Failed to connect to ubus\n");
-		return -1;
-	}
-
+    connect_to_ubus(&ctx, &ret);
     tuya_init(arguments, client, &ret);
-    
     tuya_loop_to_send_data(ctx, memory, arguments, client, id, &ret);
 
-    closelog();
     ubus_free(ctx);
+    tuya_mqtt_disconnect(client);
+    tuya_mqtt_deinit(client);
 
+    syslog(LOG_USER | LOG_INFO, "Tuya IoT daemon has ended");
+    closelog();
     return ret;
 }

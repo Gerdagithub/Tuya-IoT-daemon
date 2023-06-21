@@ -1,6 +1,6 @@
 map = Map("tuya_daemon", "Tuya IoT")
 
-section = map:section(NamedSection, "TuyaDaemon_sct", "tuya_daemon", "Tuya IoT")
+section = map:section(NamedSection, "tuya_daemon_sct", "tuya_daemon", "Tuya IoT")
 
 flag = section:option(Flag, "enable", "Enable", "Enable program")
 

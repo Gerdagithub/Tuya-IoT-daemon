@@ -1,24 +1,23 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=RouterConnectedToTuya
+PKG_NAME:=tuya-daemon
 PKG_RELEASE:=1
 PKG_VERSION:=1.0.0
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/RouterConnectedToTuya
+define Package/tuya-daemon
 	CATEGORY:=Base system
 	TITLE:=Router connected to Tuya IoT
-	DEPENDS:=+libTuya +libubox +libubus +libblobmsg-json +luci-app-TuyaIoT
-	
+	DEPENDS:=+libTuya +libubox +libubus +libblobmsg-json +luci-app-tuya-iot
 endef
 
-define Package/RouterConnectedToTuya/description
+define Package/tuya-daemon/description
 	This is daemon that makes router connected to Tuya IoT platform
 endef
 
-define Package/RouterConnectedToTuya/install
+define Package/tuya-daemon/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DIR) $(1)/etc/init.d
@@ -27,4 +26,4 @@ define Package/RouterConnectedToTuya/install
 	$(INSTALL_CONF) ./files/tuya_daemon.config $(1)/etc/config/tuya_daemon
 endef
 
-$(eval $(call BuildPackage,RouterConnectedToTuya))
+$(eval $(call BuildPackage,tuya-daemon))
