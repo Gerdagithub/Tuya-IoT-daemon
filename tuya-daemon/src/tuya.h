@@ -6,19 +6,23 @@
 #include <system_interface.h>
 #include <mqtt_client_interface.h>
 #include <tuyalink_core.h>
-#include <ubus_router.h>
 #include <cJSON.h>
-#include <argp_for_daemon.h>
 #include <signal.h>
 #include <stdbool.h>
 #include <syslog.h>
+#include <cJSON.h>
+#include "lua_data.h"
+#include "argp_for_daemon.h"
 
-extern volatile bool run_loop;
+struct tuya{
+    tuya_mqtt_context_t *client;
+    char deviceId[50];
+    char deviceSecret[50];
+};
 
 void signal_handler(int signal);
-void tuya_init(struct Arguments arguments, tuya_mqtt_context_t *client, int *ret);
-void send_data_about_memory(const char deviceId[], tuya_mqtt_context_t *client, struct MemData memory);
-void tuya_loop_to_send_data(struct ubus_context *ctx, struct MemData memory, struct Arguments arguments, tuya_mqtt_context_t *client, 
-                            uint32_t id, int *ret);
+void tuya_init(struct tuya TuyaData, int *ret);
+void on_messages(tuya_mqtt_context_t *context, void *user_data, const tuyalink_message_t *msg);
+void tuya_loop(struct tuya TuyaData, int time);
 
 #endif
